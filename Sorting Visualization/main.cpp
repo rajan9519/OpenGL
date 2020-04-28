@@ -1,9 +1,10 @@
 #include<windows.h>
 #include<GL/glut.h>
 #include<bits/stdc++.h>
+#include<unistd.h>
 
 // defining global variables(no need to pass in every function)
-const int N=500;
+const int N=380;
 int vec[N],compares,exchanges;
 std::string sortName;
 
@@ -19,16 +20,16 @@ int main(int argc,char** argv){
   // Generating random array within the range of N
   srand((unsigned)time(0));
   for(int i=0;i<N;i++){
-    vec[i] = (rand()%N);
+    vec[i] = (rand()%600);
   }
 
   glutInit(&argc,argv);// initializing glut
-  glutInitWindowSize(1000,600);// size of the window
+  glutInitWindowSize(1536,864);// size of the window
   glutCreateWindow("Sorting Visualization");// name of window
-  glutInitWindowPosition(50,50); // your screen cordinate at which window will appear
+  glutInitWindowPosition(0,100); // your screen cordinate at which window will appear
   glutDisplayFunc(display); // call back function
   initGL(); // initializing GL
-  gluOrtho2D(0,1000,0,600); // transforming clipping area to Viewport area
+  gluOrtho2D(0,1536,0,864); // transforming clipping area to Viewport area
   glutMainLoop(); // infinite processing loop
   return 0;
 }
@@ -40,7 +41,6 @@ void initGL(){
 void display(){
   visual(vec);
   int arr[N];
-
   sortName = "selection sort";
   compares = 0,exchanges = 0;
   for(int i=0;i<N;i++)
@@ -73,13 +73,13 @@ void display(){
 
 void visual(int* arr){
   glClear(GL_COLOR_BUFFER_BIT); // sets the previous background with the current background
-  drawBitmapString(400,570,sortName);
-  drawBitmapString(400,550,"Number of Compares:"+std::to_string(compares));
-  drawBitmapString(400,530,"Number of Exchanges:"+std::to_string(exchanges));
+  drawBitmapString(700,770,sortName);
+  drawBitmapString(700,750,"Number of Compares:"+std::to_string(compares));
+  drawBitmapString(700,730,"Number of Exchanges:"+std::to_string(exchanges));
   glColor3f(1.0f,0.0f,0.0f); //red
   // drawing bars on the screen by diagonal coordinates
   for(int i=0;i<N;i++){
-    glRecti(2*i,0,2*i+1,arr[i]);
+    glRecti(4*i,100,4*i+3,100+arr[i]);
   }
   glFlush();
   usleep(150);
