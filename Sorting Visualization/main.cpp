@@ -1,4 +1,4 @@
-#include<windows.h>
+// #include<windows.h> uncomment this line only if you are on windows 
 #include<GL/glut.h>
 #include<bits/stdc++.h>
 #include<unistd.h>
